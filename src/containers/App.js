@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
   state = {
@@ -41,14 +42,6 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color: 'black',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '1px',
-      cursor: 'pointer'
-    };
     let persons = null;
     if(this.state.switchPerson){
       persons = (
@@ -58,14 +51,14 @@ class App extends Component {
           changed={this.textChangedHandler}/>
         </div>
       )
-      style.backgroundColor = 'red';
     }
 
-    
-
     return (
-      <div className="App">
-        
+      <div className={classes.App}>
+        <Cockpit 
+        showPerson={this.state.switchPerson} 
+        persons={this.state.Person}
+        clicked={this.toggelPersonHandler}/>
         {persons}
       </div>
     );
