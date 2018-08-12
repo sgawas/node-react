@@ -7,7 +7,7 @@ class App extends Component {
   state = {
     Person:[{ id: "jhk123", name:"Tom", age:29 }, { id: "213dsa", name:"Sam", age:12 }, { id: "213kjhsad", name:"John", age:31 } 
     ],
-    switchPerson: false
+    showPerson: false
   };
 
   buttonSwitchHandler = (newName) => {
@@ -30,8 +30,8 @@ class App extends Component {
   };
 
   toggelPersonHandler = () => {
-    const toggle = this.state.switchPerson;
-    this.setState({switchPerson: !toggle}); 
+    const toggle = this.state.showPerson;
+    this.setState({showPerson: !toggle}); 
   };
 
   deletePersonHandler = (personIndex) => {
@@ -43,7 +43,7 @@ class App extends Component {
 
   render() {
     let persons = null;
-    if(this.state.switchPerson){
+    if(this.state.showPerson){
       persons = (
         <div>
           <Persons persons={this.state.Person} 
@@ -56,7 +56,8 @@ class App extends Component {
     return (
       <div className={classes.App}>
         <Cockpit 
-        showPerson={this.state.switchPerson} 
+        appTitle={this.props.title}
+        showPerson={this.state.showPerson} 
         persons={this.state.Person}
         clicked={this.toggelPersonHandler}/>
         {persons}
